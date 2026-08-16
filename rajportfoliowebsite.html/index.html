@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Raj Gadare | BCA Student · Founder · System Architect</title>
+  <meta name="description" content="Raj Gadare - BCA Student, Founder, System Architect & Content Creator. Building real-world digital products at the intersection of Education, Technology, AI & Business." />
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* --------------------------------------------------------------------------
+       1. CORE DESIGN SYSTEM & THEME
+       -------------------------------------------------------------------------- */
+    :root {
+      --bg-dark: #08090c;
+      --bg-surface: rgba(15, 17, 26, 0.7);
+      --bg-surface-hover: rgba(22, 26, 40, 0.9);
+      --border-light: rgba(255, 255, 255, 0.07);
+      --border-accent: rgba(56, 189, 248, 0.3);
+
+      --accent-cyan: #38bdf8;
+      --accent-blue: #3b82f6;
+      --accent-purple: #a855f7;
+      --accent-glow: rgba(56, 189, 248, 0.12);
+
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      --nav-height: 70px;
+      --max-width: 1140px;
+      --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    body {
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 15% 10%, rgba(56, 189, 248, 0.06) 0%, transparent 40%),
+        radial-gradient(circle at 85% 60%, rgba(168, 85, 247, 0.04) 0%, transparent 40%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .bg-grid-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+                        linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+      background-size: 50px 50px;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .section-padding {
+      padding: 5.5rem 0;
+    }
+
+    /* Typography & Utilities */
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-cyan);
+      display: inline-block;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-size: 2.1rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-sub {
+      color: var(--text-muted);
+      font-size: 1rem;
+      max-width: 600px;
+      margin-bottom: 2.5rem;
+    }
+
+    .glass-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      border-radius: 12px;
+      padding: 1.75rem;
+      backdrop-filter: blur(16px);
+      transition: var(--transition);
+    }
+
+    .glass-card:hover {
+      border-color: rgba(255, 255, 255, 0.15);
+      background: var(--bg-surface-hover);
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    }
+
+    .badge {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-light);
+      color: var(--text-muted);
+    }
+
+    .badge-status-active {
+      color: #4ade80;
+      border-color: rgba(74, 222, 128, 0.3);
+      background: rgba(74, 222, 128, 0.06);
+    }
+
+    .badge-status-building {
+      color: #fbbf24;
+      border-color: rgba(251, 191, 36, 0.3);
+      background: rgba(251, 191, 36, 0.06);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1.3rem;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--accent-cyan);
+      color: #000;
+      border: 1px solid var(--accent-cyan);
+    }
+
+    .btn-primary:hover {
+      background: #7dd3fc;
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.35);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text-main);
+      border: 1px solid var(--border-light);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent-cyan);
+      margin-top: 1.2rem;
+      transition: var(--transition);
+    }
+
+    .btn-link:hover {
+      text-decoration: underline;
+      gap: 0.6rem;
+    }
+
+    /* --------------------------------------------------------------------------
+       2. NAVIGATION
+       -------------------------------------------------------------------------- */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: var(--nav-height);
+      z-index: 1000;
+      transition: var(--transition);
+    }
+
+    .navbar.scrolled {
+      background: rgba(8, 9, 12, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+    }
+
+    .brand {
+      font-weight: 800;
+      font-size: 1.2rem;
+      letter-spacing: 0.05em;
+      color: var(--text-main);
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-link {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--accent-cyan);
+    }
+
+    .mobile-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text-main);
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
+
+    /* --------------------------------------------------------------------------
+       3. HOME SECTION
+       -------------------------------------------------------------------------- */
+    .hero {
+      min-height: 90vh;
+      padding-top: calc(var(--nav-height) + 2rem);
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .hero-title {
+      font-size: 3.2rem;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+    }
+
+    .hero-tagline {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .sys-widget {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+    }
+
+    .sys-flow-box {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      margin-top: 1rem;
+    }
+
+    .sys-node {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.5rem 0.85rem;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-light);
+      border-radius: 6px;
+    }
+
+    .statement-block {
+      text-align: center;
+      margin-top: 4rem;
+      padding: 2.5rem;
+      border: 1px solid var(--border-light);
+      border-radius: 12px;
+      background: linear-gradient(180deg, rgba(56, 189, 248, 0.03) 0%, transparent 100%);
+    }
+
+    /* --------------------------------------------------------------------------
+       4. SYSTEMS SECTION
+       -------------------------------------------------------------------------- */
+    .arch-diagram {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      overflow-x: auto;
+      padding: 1.5rem;
+      border: 1px solid var(--border-light);
+      border-radius: 10px;
+      background: var(--bg-surface);
+    }
+
+    .arch-step {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      padding: 0.6rem 0.9rem;
+      border: 1px solid var(--border-light);
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.02);
+      white-space: nowrap;
+    }
+
+    .arch-arrow {
+      color: var(--accent-cyan);
+    }
+
+    .capabilities-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+
+    /* --------------------------------------------------------------------------
+       5. PROJECTS SECTION
+       -------------------------------------------------------------------------- */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0.75rem;
+    }
+
+    .project-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin: 1rem 0 0.5rem 0;
+    }
+
+    /* --------------------------------------------------------------------------
+       6. JOURNEY SECTION
+       -------------------------------------------------------------------------- */
+    .journey-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 1.5rem;
+      border-left: 1px solid var(--border-light);
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .timeline-item {
+      position: relative;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: calc(-1.5rem - 4.5px);
+      top: 0.4rem;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-cyan);
+    }
+
+    .now-card {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.85rem;
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      margin-bottom: 0.75rem;
+      background: rgba(255, 255, 255, 0.01);
+    }
+
+    /* --------------------------------------------------------------------------
+       7. ABOUT ME SECTION
+       -------------------------------------------------------------------------- */
+    .about-layout {
+      display: grid;
+      grid-template-columns: 0.45fr 0.55fr;
+      gap: 2rem;
+    }
+
+    .profile-info-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin: 1.25rem 0;
+    }
+
+    .profile-info-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      padding-bottom: 0.4rem;
+    }
+
+    .profile-label {
+      color: var(--text-dim);
+    }
+
+    .social-links-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.85rem;
+      margin-top: 1rem;
+    }
+
+    .social-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.85rem 1rem;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .social-card:hover {
+      border-color: var(--accent-cyan);
+      transform: translateY(-2px);
+    }
+
+    /* --------------------------------------------------------------------------
+       8. FOOTER
+       -------------------------------------------------------------------------- */
+    .footer {
+      border-top: 1px solid var(--border-light);
+      padding: 2.5rem 0;
+      color: var(--text-dim);
+      font-size: 0.85rem;
+    }
+
+    .footer-flex {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    @media (max-width: 868px) {
+      .hero-grid, .projects-grid, .journey-grid, .about-layout, .capabilities-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-menu {
+        display: none;
+        position: absolute;
+        top: var(--nav-height);
+        left: 0;
+        width: 100%;
+        background: var(--bg-dark);
+        border-bottom: 1px solid var(--border-light);
+        flex-direction: column;
+        padding: 1.5rem;
+        gap: 1rem;
+      }
+
+      .nav-menu.active {
+        display: flex;
+      }
+
+      .mobile-btn {
+        display: block;
+      }
+
+      .hero-title {
+        font-size: 2.3rem;
+      }
+
+      .social-links-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-grid-overlay"></div>
+
+  <!-- NAVIGATION -->
+  <nav class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="#home" class="brand">RAJ GADARE</a>
+
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#home" class="nav-link">1. Home</a></li>
+        <li><a href="#systems" class="nav-link">2. Systems</a></li>
+        <li><a href="#projects" class="nav-link">3. Projects</a></li>
+        <li><a href="#journey" class="nav-link">4. Journey</a></li>
+        <li><a href="#about" class="nav-link">5. About Me</a></li>
+      </ul>
+
+      <button class="mobile-btn" id="mobileBtn" aria-label="Toggle menu">☰</button>
+    </div>
+  </nav>
+
+  <!-- HOME SECTION -->
+  <section id="home" class="hero section-padding">
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <span class="eyebrow">BCA Student · Founder · System Architect · Content Creator</span>
+          <h1 class="hero-title">I Build Systems, Products & Ideas.</h1>
+          <p class="hero-tagline">
+            "Building real-world digital products at the intersection of Education, Technology, AI & Business."
+          </p>
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary">Explore Projects →</a>
+            <a href="#about" class="btn btn-secondary">About Me</a>
+          </div>
+        </div>
+
+        <div class="glass-card sys-widget">
+          <div style="display:flex; justify-content:space-between; margin-bottom: 1rem;">
+            <span>SYSTEM FLOW</span>
+            <span class="badge badge-status-active">Active: StudyBro</span>
+          </div>
+          <div class="sys-flow-box">
+            <div class="sys-node"><span>01. IDEA</span><span class="badge">Validation</span></div>
+            <div class="sys-node"><span>02. SYSTEM DESIGN</span><span class="badge">Architecture</span></div>
+            <div class="sys-node"><span>03. PRODUCT</span><span class="badge">Full-Stack</span></div>
+            <div class="sys-node"><span>04. AI & AUTOMATION</span><span class="badge">Intelligent</span></div>
+            <div class="sys-node" style="border-color:var(--accent-cyan)"><span>05. REAL WORLD</span><span class="badge badge-status-active">Active</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="statement-block">
+        <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">"Student by Education. Builder by Practice. Founder by Vision."</h3>
+        <p style="color: var(--text-muted); max-width: 700px; margin: 0 auto;">
+          I don't build projects just to add them to a portfolio. I build products to understand real problems, design systems, and create solutions that work in the real world.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SYSTEMS SECTION -->
+  <section id="systems" class="section-padding">
+    <div class="container">
+      <span class="eyebrow">METHODOLOGY</span>
+      <h2 class="section-title">How I Think in Systems</h2>
+      <p class="section-sub">I don't only think about individual features. I think about how the entire system works together.</p>
+
+      <div class="arch-diagram">
+        <div class="arch-step">USER</div><span class="arch-arrow">→</span>
+        <div class="arch-step">FRONTEND</div><span class="arch-arrow">→</span>
+        <div class="arch-step">BACKEND</div><span class="arch-arrow">→</span>
+        <div class="arch-step">DATABASE</div><span class="arch-arrow">→</span>
+        <div class="arch-step">APIs</div><span class="arch-arrow">→</span>
+        <div class="arch-step">AI AUTOMATION</div><span class="arch-arrow">→</span>
+        <div class="arch-step" style="border-color:var(--accent-cyan)">REAL PRODUCT</div>
+      </div>
+
+      <div class="capabilities-grid">
+        <div class="glass-card">
+          <h4>System Architecture</h4>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin-top:0.4rem;">Designing how users, products, data, and services work together.</p>
+        </div>
+        <div class="glass-card">
+          <h4>Product Development</h4>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin-top:0.4rem;">Turning ideas into functional digital products and prototypes.</p>
+        </div>
+        <div class="glass-card">
+          <h4>AI & Automation</h4>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin-top:0.4rem;">Exploring AI-powered tools, workflows, and intelligent systems.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS SECTION -->
+  <section id="projects" class="section-padding">
+    <div class="container">
+      <span class="eyebrow">PORTFOLIO</span>
+      <h2 class="section-title">Things I'm Actually Building</h2>
+      <p class="section-sub">Real-world products, not just college assignments.</p>
+
+      <div class="projects-grid">
+        <!-- Project 1: StudyBro -->
+        <div class="glass-card project-card" style="border-color: var(--border-accent);">
+          <div>
+            <div class="project-header">
+              <h3 class="project-title">StudyBro</h3>
+              <span class="badge badge-status-active">🟢 ACTIVE</span>
+            </div>
+            <p style="font-size:0.85rem; color:var(--accent-cyan); font-family:var(--font-mono);">Founder · System Architect</p>
+            <p style="font-size:0.9rem; color:var(--text-muted); margin-top:0.5rem;">Comprehensive educational platform serving Maharashtra Board students across streams with interactive study resources and smart AI tools.</p>
+            <div class="project-tags">
+              <span class="badge">SSC & HSC</span>
+              <span class="badge">Study Planner</span>
+              <span class="badge">AI Student Tools</span>
+            </div>
+          </div>
+          <a href="https://studybro10stmarathimedium.netlify.app/" target="_blank" rel="noopener" class="btn-link">View Project / Demo →</a>
+        </div>
+
+        <!-- Project 2: CommerceBro -->
+        <div class="glass-card project-card">
+          <div>
+            <div class="project-header">
+              <h3 class="project-title">CommerceBro</h3>
+              <span class="badge badge-status-active">🟢 ACTIVE</span>
+            </div>
+            <p style="font-size:0.85rem; color:var(--accent-cyan); font-family:var(--font-mono);">Founder · System Architect · Content Creator</p>
+            <p style="font-size:0.9rem; color:var(--text-muted); margin-top:0.5rem;">Digital learning ecosystem designed for Maharashtra Board Commerce students, combining educational videos, notes, and study resources.</p>
+            <div class="project-tags">
+              <span class="badge">11th/12th Commerce</span>
+              <span class="badge">Notes & PYQs</span>
+              <span class="badge">YouTube Content</span>
+            </div>
+          </div>
+          <a href="https://commercebroeducationalplatform.netlify.app/" target="_blank" rel="noopener" class="btn-link">View Project / Demo →</a>
+        </div>
+
+        <!-- Project 3: T-Vibe -->
+        <div class="glass-card project-card">
+          <div>
+            <div class="project-header">
+              <h3 class="project-title">T-Vibe</h3>
+              <span class="badge badge-status-building">🚧 BUILDING</span>
+            </div>
+            <p style="font-size:0.85rem; color:var(--accent-cyan); font-family:var(--font-mono);">Product Builder</p>
+            <p style="font-size:0.9rem; color:var(--text-muted); margin-top:0.5rem;">An AI-powered fashion recommendation concept combining style profiles, wardrobe inputs, and occasion recommendations.</p>
+            <div class="project-tags">
+              <span class="badge">AI Fashion</span>
+              <span class="badge">Wardrobe Match</span>
+              <span class="badge">In Development</span>
+            </div>
+          </div>
+          <a href="https://fashion-scan-8.emergent.host/" target="_blank" rel="noopener" class="btn-link">View Repository →</a>
+        </div>
+
+        <!-- Project 4: Smart Clean Business -->
+        <div class="glass-card project-card">
+          <div>
+            <div class="project-header">
+              <h3 class="project-title">Smart Clean Business</h3>
+              <span class="badge badge-status-active">🟢 ACTIVE</span>
+            </div>
+            <p style="font-size:0.85rem; color:var(--accent-cyan); font-family:var(--font-mono);">Digital Business Product</p>
+            <p style="font-size:0.9rem; color:var(--text-muted); margin-top:0.5rem;">Digital presence and product catalog system for a real-world industrial cleaning products venture.</p>
+            <div class="project-tags">
+              <span class="badge">Catalog System</span>
+              <span class="badge">Digital Presence</span>
+            </div>
+          </div>
+          <a href="https://smartcleanproducts.netlify.app/" target="_blank" rel="noopener" class="btn-link">View Project / Demo →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- JOURNEY SECTION -->
+  <section id="journey" class="section-padding">
+    <div class="container">
+      <span class="eyebrow">BACKGROUND & STATUS</span>
+      <h2 class="section-title">My Journey & Current Focus</h2>
+      <p class="section-sub">My academic path and what I am currently executing.</p>
+
+      <div class="journey-grid">
+        <div>
+          <h3 style="margin-bottom: 1.5rem;">Academic Evolution</h3>
+          <div class="timeline">
+            <div class="timeline-item">
+              <strong>Commerce Background</strong>
+              <div style="font-size:0.85rem; color:var(--text-dim);">Business Understanding & Accounting Fundamentals</div>
+            </div>
+            <div class="timeline-item">
+              <strong>BCA Enrollment (Sandip University)</strong>
+              <div style="font-size:0.85rem; color:var(--text-dim);">Degree in Computer Applications, Nashik</div>
+            </div>
+            <div class="timeline-item">
+              <strong>Web Development & AI Focus</strong>
+              <div style="font-size:0.85rem; color:var(--text-dim);">Full-Stack Exploration & Smart Systems</div>
+            </div>
+            <div class="timeline-item">
+              <strong>Founder & Builder Stage</strong>
+              <div style="font-size:0.85rem; color:var(--text-dim);">Building StudyBro & CommerceBro Ecosystems</div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3 style="margin-bottom: 1.5rem;">What I Do Now</h3>
+          <div class="now-card">
+            <div>
+              <strong>Executing StudyBro Ecosystem</strong>
+              <div style="font-size:0.8rem; color:var(--text-dim);">EdTech System Architecture & AI Integration</div>
+            </div>
+            <span class="badge badge-status-active">Active</span>
+          </div>
+          <div class="now-card">
+            <div>
+              <strong>Developing T-Vibe Concept</strong>
+              <div style="font-size:0.8rem; color:var(--text-dim);">Building AI Fashion Recommendation System</div>
+            </div>
+            <span class="badge badge-status-building">Building</span>
+          </div>
+          <div class="now-card">
+            <div>
+              <strong>Full-Stack & APIs</strong>
+              <div style="font-size:0.8rem; color:var(--text-dim);">Node.js, Databases & Modern Web Stack</div>
+            </div>
+            <span class="badge badge-status-active">Learning</span>
+          </div>
+          <div class="now-card">
+            <div>
+              <strong>Educational Content Creation</strong>
+              <div style="font-size:0.8rem; color:var(--text-dim);">Creating Commerce & Student Guides</div>
+            </div>
+            <span class="badge badge-status-active">Creating</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT ME SECTION -->
+  <section id="about" class="section-padding">
+    <div class="container">
+      <span class="eyebrow">IDENTITY</span>
+      <h2 class="section-title">About Me</h2>
+      <p class="section-sub">Meet the person behind the systems and products.</p>
+
+      <div class="about-layout">
+        <div class="glass-card">
+          <h3 style="font-size: 1.5rem;">Raj Gadare</h3>
+          <p style="font-family:var(--font-mono); font-size:0.8rem; color:var(--accent-cyan); margin-bottom: 1rem;">
+            BCA Student · Founder · System Architect · Content Creator
+          </p>
+          <p style="font-size:0.9rem; color:var(--text-muted);">
+            I am a BCA student, builder, and aspiring system architect based in Nashik, Maharashtra. Alongside my education, I create educational content and build digital platforms.
+          </p>
+
+          <div class="profile-info-list">
+            <div class="profile-info-row">
+              <span class="profile-label">Name</span>
+              <span>Raj Gadare</span>
+            </div>
+             <div class="profile-info-row">
+              <span class="profile-label">Age</span>
+              <span>18+</span>
+            </div>
+            <div class="profile-info-row">
+              <span class="profile-label">Current Role</span>
+              <span>BCA Student & Builder</span>
+            </div>
+            <div class="profile-info-row">
+              <span class="profile-label">Education</span>
+              <span>12th commerce,FY-BCA, Sandip University</span>
+            </div>
+            <div class="profile-info-row">
+              <span class="profile-label">Location</span>
+              <span>Nashik, Maharashtra, India</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h3>Social Media & Connect</h3>
+          <p style="font-size:0.9rem; color:var(--text-muted); margin-top:0.4rem;">Follow my builder journey, content, and updates across channels.</p>
+
+          <div class="social-links-grid">
+            <a href="https://github.com/rajgadare1204-oss?tab=projects" target="_blank" rel="noopener" class="social-card">
+              <span>GitHub</span>
+              <span style="color:var(--accent-cyan);">→</span>
+            </a>
+            <a href="https://www.linkedin.com/in/raj-gadare-a8a582413/" target="_blank" rel="noopener" class="social-card">
+              <span>LinkedIn</span>
+              <span style="color:var(--accent-cyan);">→</span>
+            </a>
+            <a href="https://www.youtube.com/@therajpawar_12" target="_blank" rel="noopener" class="social-card">
+              <span>YouTube</span>
+              <span style="color:var(--accent-cyan);">→</span>
+            </a>
+            <a href="https://www.instagram.com/therajpawar12._?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw%3D%3D" target="_blank" rel="noopener" class="social-card">
+              <span>Instagram</span>
+              <span style="color:var(--accent-cyan);">→</span>
+            </a>
+            <a href="https://x.com/therajpawar12" target="_blank" rel="noopener" class="social-card">
+              <span>X (Twitter)</span>
+              <span style="color:var(--accent-cyan);">→</span>
+            </a>
+            <a href="https://contactrajgadare.netlify.app/" target="_blank" rel="noopener" class="social-card">
+              <span>Contact page</span>
+              <span style="color:var(--accent-cyan);">→</span>
+            </a>
+          </div>
+
+          <div style="margin-top: 1.5rem;">
+            <a href="https://www.linkedin.com/in/raj-gadare-a8a582413/" target="_blank" rel="noopener" class="btn btn-primary" style="width:100%; justify-content:center;">
+              Let's Connect on LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-flex">
+      <div>
+        <strong style="color: var(--text-main);">RAJ GADARE</strong>
+        <div>Building real-world systems, one idea at a time.</div>
+      </div>
+      <div>
+        © 2026 Raj Gadare. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const navbar = document.getElementById('navbar');
+    const mobileBtn = document.getElementById('mobileBtn');
+    const navMenu = document.getElementById('navMenu');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 30) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    mobileBtn.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+      });
+    });
+
+    const sections = document.querySelectorAll('section[id]');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        if (pageYOffset >= sectionTop - 150) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
